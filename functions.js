@@ -1,3 +1,4 @@
+// this will all need to change to reflect certain calls.
 var $ = jQuery.noConflict();
 
 $.fn.inlineStyle = function (prop) {
