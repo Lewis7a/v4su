@@ -1,11 +1,9 @@
 /*-----------------------------------------------------------------------------------
 
-	Theme Name: Canvas
-	Theme URI: http://themes.semicolonweb.com/html/canvas
-	Description: The Multi-Purpose Template
-	Author: SemiColonWeb
-	Author URI: http://themeforest.net/user/semicolonweb
-	Version: 5.1
+	Theme Name: v4su
+	Theme URI: https://upsu.com/v4su
+	Author: Lewis.A
+	Version: 4.0
 
 -----------------------------------------------------------------------------------*/
 
@@ -80,7 +78,6 @@
 		- Newsletter
 		- Twitter Feed
 		- Navigation Tree
-	- Wedding
 	- Bootstrap Specific
 	- Cookie Notification
 	- Stretched Layout
@@ -90,8 +87,7 @@
 ---------------------------------------------------------------- */
 
 
-/* ----------------------------------------------------------------
-	Bootstrap Adjustments
+/* Bootstrap Adjustments
 -----------------------------------------------------------------*/
 
 @media (min-width: 576px) {
@@ -115,8 +111,7 @@ body,
 .dropdown-menu { font-size: 0.875rem; }
 
 
-/* ----------------------------------------------------------------
-	Basic
+/* Basic
 -----------------------------------------------------------------*/
 
 dl, dt, dd, ol, ul, li {
@@ -156,8 +151,7 @@ dl, dt, dd, ol, ul, li {
 :focus { outline: none !important; }
 
 
-/* ----------------------------------------------------------------
-	Typography
+/* Typography
 -----------------------------------------------------------------*/
 
 
@@ -181,8 +175,7 @@ img { max-width: 100%; }
 iframe { border: none !important; }
 
 
-/* ----------------------------------------------------------------
-	Basic Layout Styles
+/* Basic Layout Styles
 -----------------------------------------------------------------*/
 
 
@@ -241,8 +234,7 @@ form { margin-bottom: 30px; }
 small { font-family: 'Lato', sans-serif; }
 
 
-/* ----------------------------------------------------------------
-	Helper Classes
+/* Helper Classes
 -----------------------------------------------------------------*/
 
 
@@ -558,8 +550,7 @@ span.middot {
 .magnific-max-width .mfp-content { max-width: 800px; }
 
 
-/* ----------------------------------------------------------------
-	Sections
+/* Sections
 -----------------------------------------------------------------*/
 
 
@@ -601,8 +592,7 @@ span.middot {
 .section:hover .revealer-image { bottom: -50px; }
 
 
-/* ----------------------------------------------------------------
-	Columns & Grids
+/* Columns & Grids
 -----------------------------------------------------------------*/
 
 
@@ -663,8 +653,7 @@ body.stretched .container-fullwidth {
 }
 
 
-/* ----------------------------------------------------------------
-	Flex Slider
+/* Flex Slider
 -----------------------------------------------------------------*/
 
 
@@ -746,8 +735,7 @@ html[xmlns] .slider-wrap {display: block;}
 .flex-control-nav li a.flex-active { background-color: #FFF; }
 
 
-/* ----------------------------------------------------------------
-	Top Bar
+/* Top Bar
 -----------------------------------------------------------------*/
 
 
@@ -955,8 +943,7 @@ html[xmlns] .slider-wrap {display: block;}
 }
 
 
-/* ----------------------------------------------------------------
-	Header
+/* Header
 -----------------------------------------------------------------*/
 
 
@@ -1027,8 +1014,7 @@ body.stretched #header.full-header .container {
 }
 
 
-/* ----------------------------------------------------------------
-	Logo
+/* Logo
 -----------------------------------------------------------------*/
 
 
@@ -1064,8 +1050,7 @@ body.stretched #header.full-header .container {
 #logo a.retina-logo { display: none; }
 
 
-/* ----------------------------------------------------------------
-	Header Right Area
+/* Header Right Area
 -----------------------------------------------------------------*/
 
 
@@ -1101,8 +1086,7 @@ body.stretched #header.full-header .container {
 }
 
 
-/* ----------------------------------------------------------------
-	Primary Menu
+/* Primary Menu
 -----------------------------------------------------------------*/
 
 
@@ -1261,8 +1245,7 @@ body.no-superfish #primary-menu li:hover > .mega-menu-content { display: block; 
 }
 
 
-/* ----------------------------------------------------------------
-	Mega Menu
+/* Mega Menu
 -----------------------------------------------------------------*/
 
 
@@ -2974,9 +2957,9 @@ body:not(.stretched) .slider-parallax .slider-parallax-inner { left: auto; }
 	height: 100%;
 }
 
-.slider-element.canvas-slider .swiper-slide img { width: 100%; }
+.slider-element v4su-slider .swiper-slide img { width: 100%; }
 
-.slider-element.canvas-slider a {
+.slider-element v4su-slider a {
 	display: block;
 	height: 100%;
 }
@@ -10246,7 +10229,7 @@ body:not(.device-touch) .rounded-skill {
 
 .rounded-skill i { font-size: 42px; }
 
-.rounded-skill canvas {
+.rounded-skill v4su {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -11506,8 +11489,7 @@ input[type=checkbox]:not(:checked) + label.error { display: block !important; }
 	min-height: 0;
 }
 
-/* ----------------------------------------------------------------
-	Go To Top
+/* Go To Top
 -----------------------------------------------------------------*/
 
 
@@ -11542,8 +11524,7 @@ body:not(.device-touch) #gotoTop {
 #gotoTop:hover { background-color: #1ABC9C; }
 
 
-/* ----------------------------------------------------------------
-	Error 404
+/* Error 404
 -----------------------------------------------------------------*/
 
 
@@ -11578,8 +11559,7 @@ body:not(.device-touch) #gotoTop {
 .error404-wrap form { max-width: 500px; }
 
 
-/* ----------------------------------------------------------------
-	Landing Pages
+/* Landing Pages
 -----------------------------------------------------------------*/
 
 .landing-wide-form {
@@ -11612,8 +11592,7 @@ body:not(.device-touch) #gotoTop {
 .landing-promo > .container > span { font-size: 17px; }
 
 
-/* ----------------------------------------------------------------
-	Preloaders
+/* Preloaders
 -----------------------------------------------------------------*/
 
 
@@ -11636,8 +11615,7 @@ body:not(.device-touch) #gotoTop {
 }
 
 
-/* ----------------------------------------------------------------
-	Toastr Notifications
+/* Toastr Notifications
 -----------------------------------------------------------------*/
 
 
@@ -11687,7 +11665,7 @@ body:not(.device-touch) #gotoTop {
 }
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
- If you want the anchor version, it requires `href="#"`.*/
+ If we want the anchor version, it requires `href="#"`.*/
 button.toast-close-button {
 	padding: 0;
 	cursor: pointer;
@@ -11845,8 +11823,7 @@ button.toast-close-button {
 }
 
 
-/* ----------------------------------------------------------------
-	Footer
+/* Footer
 -----------------------------------------------------------------*/
 
 
@@ -11959,8 +11936,7 @@ button.toast-close-button {
 }
 
 
-/* ----------------------------------------------------------------
-	Widgets
+/* Widgets
 -----------------------------------------------------------------*/
 
 
@@ -12173,20 +12149,6 @@ body:not(.device-touch) .tagcloud a {
 
 .widget .testimonial p { font-size: 14px; }
 
-
-/* Widget - Quick Contact Form
------------------------------------------------------------------*/
-
-.quick-contact-widget .form-control,
-.quick-contact-widget .input-group,
-.quick-contact-widget .sm-form-control { margin-bottom: 10px; }
-
-.quick-contact-widget .input-group .form-control { margin-bottom: 0; }
-
-.quick-contact-widget form,
-#template-contactform { position: relative; }
-
-
 /* Newsletter Widget
 -----------------------------------------------------------------*/
 
@@ -12362,54 +12324,6 @@ body:not(.device-touch) .tagcloud a {
 .nav-tree ul ul ul a { padding-left: 40px; }
 .nav-tree ul ul ul ul a { padding-left: 60px; }
 .nav-tree ul ul ul ul ul a { padding-left: 80px; }
-
-
-/* ----------------------------------------------------------------
-	Wedding
------------------------------------------------------------------*/
-
-
-.wedding-head {
-	position: relative;
-	line-height: 1;
-	font-size: 80px;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-}
-
-.wedding-head .first-name,
-.wedding-head .last-name,
-.wedding-head .and {
-	display: inline-block;
-	margin-right: 15px;
-	font-weight: bold;
-	text-align: right;
-	text-transform: uppercase;
-	font-family: 'Raleway', sans-serif;
-	letter-spacing: 2px;
-}
-
-.wedding-head .last-name {
-	margin: 0 0 0 15px;
-	text-align: left;
-}
-
-.wedding-head .first-name span,
-.wedding-head .last-name span {
-	display: block;
-	margin-top: 10px;
-	font-size: 56px;
-	font-weight: 400;
-	font-style: italic;
-	font-family: 'Crete Round', serif;
-	text-transform: none;
-}
-
-.wedding-head .and {
-	margin: 0;
-	font-size: 200px;
-	font-family: 'Times New Roman', serif;
-}
-
 
 /* ----------------------------------------------------------------
 	Bootstrap Specific
