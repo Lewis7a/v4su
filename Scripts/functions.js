@@ -1,4 +1,3 @@
-// this will all need to change to reflect certain calls.
 var $ = jQuery.noConflict();
 
 $.fn.inlineStyle = function (prop) {
@@ -1412,8 +1411,8 @@ var SEMICOLON = SEMICOLON || {};
 				if (!$(event.target).closest('#page-menu').length) { $pagemenu.toggleClass('pagemenu-active', false); }
 				if (!$(event.target).closest('#side-panel').length) { $body.toggleClass('side-panel-open', false); }
 				if (!$(event.target).closest('#primary-menu').length) { $('#primary-menu.on-click > ul').find('.d-block').removeClass('d-block'); }
-				if (!$(event.target).closest('#primary-menu.mobile-menu-off-canvas > ul').length) { $('#primary-menu.mobile-menu-off-canvas > ul').toggleClass('show', false); }
-				if (!$(event.target).closest('#primary-menu.mobile-menu-off-canvas > div > ul').length) { $('#primary-menu.mobile-menu-off-canvas > div > ul').toggleClass('show', false); }
+				if (!$(event.target).closest('#primary-menu.mobile-menu-off-canvas > ul').length) { $('#primary-menu.mobile-menu-off-canvas > ul').toggleClass('d-block', false); }
+				if (!$(event.target).closest('#primary-menu.mobile-menu-off-canvas > div > ul').length) { $('#primary-menu.mobile-menu-off-canvas > div > ul').toggleClass('d-block', false); }
 			});
 
 			$("#top-search-trigger").click(function(e){
@@ -2241,19 +2240,24 @@ var SEMICOLON = SEMICOLON || {};
 				videoEl.each(function(){
 					var element = $(this),
 						elementVideo = element.find('video'),
-						outerContainerWidth = element.outerWidth(),
-						outerContainerHeight = element.outerHeight(),
-						innerVideoWidth = elementVideo.outerWidth(),
-						innerVideoHeight = elementVideo.outerHeight();
+						divWidth = element.outerWidth(),
+						divHeight = element.outerHeight(),
+						videoWidth = ( (16*divHeight)/9 ),
+						videoHeight = divHeight;
 
-					if( innerVideoHeight < outerContainerHeight ) {
-						var videoAspectRatio = innerVideoWidth/innerVideoHeight,
-							newVideoWidth = outerContainerHeight * videoAspectRatio,
-							innerVideoPosition = (newVideoWidth - outerContainerWidth) / 2;
-						elementVideo.css({ 'width': newVideoWidth+'px', 'height': outerContainerHeight+'px', 'left': -innerVideoPosition+'px' });
-					} else {
-						var innerVideoPosition = (innerVideoHeight - outerContainerHeight) / 2;
-						elementVideo.css({ 'width': innerVideoWidth+'px', 'height': innerVideoHeight+'px', 'top': -innerVideoPosition+'px' });
+					if( videoWidth < divWidth ) {
+						videoWidth = divWidth;
+						videoHeight = ( (9*divWidth)/16 );
+					}
+
+					elementVideo.css({ width: videoWidth+'px', height: videoHeight+'px' });
+
+					if( videoHeight > divHeight ) {
+						elementVideo.css({ 'left': '', 'top': -( ( videoHeight - divHeight )/2 )+'px' });
+					}
+
+					if( videoWidth > divWidth ) {
+						elementVideo.css({ 'top': '', 'left': -( ( videoWidth - divWidth )/2 )+'px' });
 					}
 
 					if( SEMICOLON.isMobile.any() && !element.hasClass('no-placeholder') ) {
@@ -2347,6 +2351,13 @@ var SEMICOLON = SEMICOLON || {};
 					if( !elementSpeed ) { elementSpeed = 400; }
 					if( !tabActive ) { tabActive = 0; } else { tabActive = tabActive - 1; }
 
+					var windowHash = window.location.hash;
+					if( jQuery(windowHash).length > 0 ) {
+						var windowHashText = windowHash.split('#'),
+							tabItem = document.getElementById( windowHashText[1] );
+						tabActive = jQuery( ".tab-content" ).index( tabItem );
+					}
+
 					element.tabs({
 						active: Number(tabActive),
 						show: {
@@ -2425,7 +2436,7 @@ var SEMICOLON = SEMICOLON || {};
 
 			$tabsResponsive.each( function(){
 				var element = $(this),
-					tabActive = element.attr('data-active'),
+					tabActive = element.tabs( 'option', 'active' ) + 1,
 					elementAccStyle = element.attr('data-accordion-style');
 
 				if( $('body').hasClass('device-sm') || $('body').hasClass('device-xs') ) {
@@ -3355,69 +3366,6 @@ var SEMICOLON = SEMICOLON || {};
 			});
 		},
 
-		ticker: function(){
-
-			var $ticker = jQuery('.scw-ticker');
-			if( $ticker.length < 1 ){ return true; }
-
-			$ticker.each( function(){
-
-				var element = $(this),
-					elementItem = element.find('.scw-ticker-item'),
-					tickerItemWidth = 0,
-					tickerItemCount = elementItem.length,
-					tickerWidth = 0,
-					elementSpeed = element.attr('data-speed'),
-					elementHover = element.attr('data-hover'),
-					elementItems = element.attr('data-items'),
-					elementItemsXl = element.attr('data-items-xl'),
-					elementItemsLg = element.attr('data-items-lg'),
-					elementItemsMd = element.attr('data-items-md'),
-					elementItemsSm = element.attr('data-items-sm'),
-					elementItemsXs = element.attr('data-items-xs');
-
-				if( !elementItems ) { elementItems = 5; }
-				if( !elementItemsXl ) { elementItemsXl = Number(elementItems); }
-				if( !elementItemsLg ) { elementItemsLg = Number(elementItemsXl); }
-				if( !elementItemsMd ) { elementItemsMd = Number(elementItemsLg); }
-				if( !elementItemsSm ) { elementItemsSm = Number(elementItemsMd); }
-				if( !elementItemsXs ) { elementItemsXs = Number(elementItemsSm); }
-
-				tickerItemWidth = windowWidth / elementItems;
-				tickerWidth = ( tickerItemWidth * tickerItemCount );
-
-				element.find('.scw-ticker-wrap').after('<div class="scw-ticker-wrap-clone"></div>');
-
-				var elementWrap = element.find('.scw-ticker-wrap,.scw-ticker-wrap-clone');
-
-				elementItem.css({ 'width':tickerItemWidth });
-
-				setTimeout( function(){
-					elementWrap.css({ 'width': tickerWidth });
-					element.css({ 'width': (tickerWidth*2) });
-					elementItem.clone().appendTo( element.find('.scw-ticker-wrap-clone') );
-				}, 300);
-
-				if( !elementSpeed ) { elementSpeed = 30000; }
-				if( elementHover == 'false' ) { elementHover = false; } else { elementHover = true; }
-
-				var speedFactor = tickerWidth / windowWidth;
-
-				elementWrap.css({ 'animation-duration': ( Number(elementSpeed)*speedFactor )+'ms' });
-
-				if( elementHover == true ) {
-					element.on( 'mouseover', function(){
-						elementWrap.addClass('scw-ticker-paused');
-					});
-
-					element.on( 'mouseout', function(){
-						elementWrap.removeClass('scw-ticker-paused');
-					});
-				}
-			});
-
-		},
-
 		stickySidebar: function(){
 
 			if( !$().scwStickySidebar ) {
@@ -3674,7 +3622,6 @@ var SEMICOLON = SEMICOLON || {};
 			SEMICOLON.widget.loadFlexSlider();
 			SEMICOLON.widget.html5Video();
 			SEMICOLON.widget.masonryThumbs();
-			SEMICOLON.widget.ticker();
 			SEMICOLON.header.topsocial();
 			SEMICOLON.header.responsiveMenuClass();
 			SEMICOLON.initialize.modal();
