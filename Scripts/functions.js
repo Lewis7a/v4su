@@ -33,7 +33,67 @@ $.fn.doOnce = function( func ) {
 			clearTimeout(id);
 		};
 }());
+//whatson
+$('#whatson .msl-item').each(function () {
+    $(this).find(".msl-pubdate, .msl-title,.msl-leader").wrapAll('<div class="news-content"></div>');
+    });
+    $('#whatson .msl-item .news-content').each(function () {
+         $(this).find(".msl-pubdate").insertBefore($(this).find(".msl-title"));
+    });
+    $('#whatson .msl-item img').each(function () {
+      $(this).wrapAll('<div class="img-content"></div>');
+    });
+    
+      $('.msl_organisation_list li.msl-gl-logo').each(function () {
+        img = $(this).find('a').addClass('gl-logo');
+        $(this).next().prepend(img);
+        $(this).remove();
+      });
+    
+    $('#filterlist  ul.msl_organisation_list li').each(function () {
+         $(this).find(".msl-gl-attributes").insertBefore($(this).find(".msl-gl-link"));
+});
+(function($){
+	$.fn.liveFilter = function(inputEl, filterEl, options){
+		var defaults = {
+			filterChildSelector: null,
+			filter: function(el, val){
+				return $(el).text().toUpperCase().indexOf(val.toUpperCase()) >= 0;
+			},
+			before: function(){},
+			after: function(){}
+		};
+		var options = $.extend(defaults, options);
+		
+		var el = $(this).find(filterEl);
+		if (options.filterChildSelector) el = el.find(options.filterChildSelector);
 
+		var filter = options.filter;
+		$(inputEl).keyup(function(){
+			var val = $(this).val();
+			var contains = el.filter(function(){
+				return filter(this, val);
+			});
+			var containsNot = el.not(contains);
+			if (options.filterChildSelector){
+				contains = contains.parents(filterEl);
+				containsNot = containsNot.parents(filterEl).hide();
+			}
+			
+			options.before.call(this, contains, containsNot);
+			
+			contains.show();
+			containsNot.hide();
+			
+			if (val === '') {
+				contains.show();
+				containsNot.show();
+			}
+			
+			options.after.call(this, contains, containsNot);
+		});
+	}
+})(jQuery);
 // +++++++++++++++++++
 // Basket+Search document load
 // Look to optimize search
