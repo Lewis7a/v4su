@@ -33,6 +33,9 @@ $.fn.doOnce = function( func ) {
 			clearTimeout(id);
 		};
 }());
+$('.basket .dt' ).each(function() {
+	$(this).find(".price,  .qty, .msl_event_time,  .remove").wrapAll('<div class="details"></div>');
+});
 //whatson
 $('#whatson .msl-item').each(function () {
     $(this).find(".msl-pubdate, .msl-title,.msl-leader").wrapAll('<div class="news-content"></div>');
